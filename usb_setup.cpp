@@ -36,17 +36,18 @@
 
 #include "midihid.h"
 #include "boards_private.h"
-
 #include "usb_hid_device.h"
 #include <libmaple/gpio.h>
 #include <libmaple/timer.h>
 
 #include <boards.h>
 #include <usb_serial.h>
+#include "dummyserial.h"
 
 namespace wirish {
     namespace priv {
 
+        static USBSerialNOP dummy;
         void board_setup_usb(void) {
 
 			
@@ -64,9 +65,11 @@ namespace wirish {
 #endif
 #if  defined(USB_HARDWARE) && (defined(USB_HID_KMJ) || defined(USB_HID_KM) || defined(USB_HID_J))
 			HID.begin();
+            Serial = dummy;
 #endif
 #ifdef USB_MIDI
 			MidiUSB.begin();
+            Serial = dummy;
 #endif
 #endif
 		}

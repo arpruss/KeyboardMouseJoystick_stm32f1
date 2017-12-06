@@ -63,8 +63,8 @@ namespace wirish {
 #ifdef USB_SERIAL
 			Serial.begin();// Roger Clark. Changed SerialUSB to Serial for Arduino sketch compatibility
 #endif
-#if  defined(USB_HARDWARE) && (defined(USB_HID_KMJ) || defined(USB_HID_KM) || defined(USB_HID_J))
-			HID.begin();
+#if defined(USB_HID_KMJ) || defined(USB_HID_KM) || defined(USB_HID_J)
+			HID.begin(); 
             Serial = dummy;
 #endif
 #ifdef USB_MIDI
